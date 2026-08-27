@@ -10,6 +10,8 @@ public class TestController {
 
     @GetMapping
     public String testEndpoint() {
+
+        System.out.println("testEndpoint() method called");
         return "Test endpoint is working!";
     }
 }
