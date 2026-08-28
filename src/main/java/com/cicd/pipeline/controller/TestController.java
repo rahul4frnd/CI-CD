@@ -12,6 +12,7 @@ public class TestController {
     public String testEndpoint() {
 
         System.out.println("testEndpoint() method called");
-        return "Test endpoint is working and it is deployed!";
+
+        return "Test endpoint is working and it is deployed mazaa aa raha bidu!";
     }
 }
