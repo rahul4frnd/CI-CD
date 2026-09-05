@@ -68,21 +68,22 @@ pipeline {
                 '''
             }
         }
-    }
-}
-stage('Deploy to EC2') {
-    steps {
-        sh '''
-            docker pull ${ECR_REGISTRY}/${ECR_REPOSITORY}:latest
 
-            docker stop spring-boot-app || true
-            docker rm spring-boot-app || true
+        stage('Deploy to EC2') {
+            steps {
+                sh '''
+                    docker pull ${ECR_REGISTRY}/${ECR_REPOSITORY}:latest
 
-            docker run -d \
-                --name spring-boot-app \
-                --restart unless-stopped \
-                -p 8081:8080 \
-                ${ECR_REGISTRY}/${ECR_REPOSITORY}:latest
-        '''
+                    docker stop spring-boot-app || true
+                    docker rm spring-boot-app || true
+
+                    docker run -d \
+                        --name spring-boot-app \
+                        --restart unless-stopped \
+                        -p 8081:8080 \
+                        ${ECR_REGISTRY}/${ECR_REPOSITORY}:latest
+                '''
+            }
+        }
     }
 }
